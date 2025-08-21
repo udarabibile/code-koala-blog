@@ -1,7 +1,7 @@
 +++
 author = "Udara Bibile"
 authors = ["s"]
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile.jpg"
 title = "Linux Snippet: File Permissions & Ownership"
 date = "2020-03-30"
 description = "Using chmod and chown to work with permissions and ownership"

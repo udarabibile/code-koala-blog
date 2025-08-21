@@ -1,6 +1,6 @@
 +++
 author = "Udara Bibile"
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile.jpg"
 title = "Introduction to React Context API"
 date = "2019-07-20"
 description = "Avoid props drilling to child components"
