@@ -1,0 +1,163 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><title>CODE KOALA BY BIBI - Introduction to React Hooks</title>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.128.1"><meta itemprop=name content="Introduction to React Hooks"><meta itemprop=description content="Giving superpowers to functional components"><meta itemprop=datePublished content="2019-07-19T00:00:00+00:00"><meta itemprop=dateModified content="2019-07-19T00:00:00+00:00"><meta itemprop=wordCount content="1254"><meta itemprop=image content="http://codekoala.tech/img/2019/react-hooks.png"><meta itemprop=keywords content="Reactjs,Syntax"><meta property="og:url" content="http://codekoala.tech/blog/introduction-to-react-hooks/"><meta property="og:site_name" content="Code Koala"><meta property="og:title" content="Introduction to React Hooks"><meta property="og:description" content="Giving superpowers to functional components"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2019-07-19T00:00:00+00:00"><meta property="article:modified_time" content="2019-07-19T00:00:00+00:00"><meta property="article:tag" content="Reactjs"><meta property="article:tag" content="Syntax"><meta property="og:image" content="http://codekoala.tech/img/2019/react-hooks.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://codekoala.tech/img/2019/react-hooks.png"><meta name=twitter:title content="Introduction to React Hooks"><meta name=twitter:description content="Giving superpowers to functional components"><html></html><link rel=stylesheet href=/css/bundle.min.1004409345ccc830f3b1796ed1c97699aab1699867359a9d3d19c18fd7813890.css integrity="sha256-EARAk0XMyDDzsXlu0cl2maqxaZhnNZqdPRnBj9eBOJA="><link rel=stylesheet href=/css/add-on.css><link disabled id=dark-mode-theme rel=stylesheet href=/css/dark-theme.css></head><body><header id=site-header><nav id=site-nav><h1 class=nav-title><a href=/><img src=/img/main/koala2.png width=50 alt="navbar logo">
+Code Koala by BIBI</a></h1><menu id=site-nav-menu class=flyout-menu><a href=/ class=link><i class='fa fa-home'></i> Home</a>
+<a href=/about/ class=link><i class='far fa-id-card'></i> About</a>
+<a href=/blog/ class=link><i class='far fa-newspaper'></i> Blog</a>
+<a href=/categories/ class=link><i class='fas fa-sitemap'></i> Categories</a>
+<a href=/tags/ class=link><i class='fa fa-tags'></i> Tags</a>
+<a href=#share-menu class=share-toggle><i class="fas fa-share-alt">&nbsp;</i>Share</a></menu><i id=dark-mode-toggle class="fa fa-moon fa-2x">&nbsp;</i>
+<a href=#share-menu class=share-toggle><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+<a href=#lang-menu class=lang-toggle lang=en>en</a>
+<a href=#site-nav class=nav-toggle><i class="fas fa-bars fa-2x"></i></a></nav><menu id=lang-menu class=flyout-menu><a href=# lang=en class="link active">English (en)</a></menu><menu id=share-menu class=flyout-menu><h1>Share Post</h1><a href="//twitter.com/share?text=Introduction%20to%20React%20Hooks&amp;url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-hooks%2f" target=_blank rel=noopener class="share-btn twitter"><i class="fab fa-twitter"></i><p>&nbsp;Twitter</p></a><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-hooks%2f&amp;title=Introduction%20to%20React%20Hooks" target=_blank rel=noopener class="share-btn linkedin"><i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p></a><a href target=_blank class="share-btn email" data-proofer-ignore><i class="fas fa-envelope"></i><p>&nbsp;Email</p></a></menu></header><div id=wrapper><main id=site-main><article class=post><header><div class=title><h2><a href=/blog/introduction-to-react-hooks/>Introduction to React Hooks</a></h2><h6>Giving superpowers to functional components</h6></div><div class=meta><time class=published datetime="2019-07-19 00:00:00 +0000 UTC">July 19, 2019
+</time><span class=author>Udara Bibile</span>
+<a href=/about><img style=width:5em src=/img/udarabibile.jpg></img></a><br><p>6 minutes read</p></div></header><section id=socnet-share><a href="//twitter.com/share?text=Introduction%20to%20React%20Hooks&amp;url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-hooks%2f" target=_blank rel=noopener class="share-btn twitter"><i class="fab fa-twitter"></i><p>&nbsp;Twitter</p></a><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-hooks%2f&amp;title=Introduction%20to%20React%20Hooks" target=_blank rel=noopener class="share-btn linkedin"><i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p></a><a href target=_blank class="share-btn email" data-proofer-ignore><i class="fas fa-envelope"></i><p>&nbsp;Email</p></a></section><div class=content><p>From <strong>React’s version 16.8.0</strong>, Hooks are introduced to make functional components more useful.</p><p>TODO: MAKE MORE WIDTH</p><p>In React, <strong>class components</strong> are <strong>stateful and smart</strong>, being state is attached to it and kept persistent through renders. Then <strong>functional components</strong> were <strong>stateless and dumb</strong> components, having nor state nor logic attached to it.</p><p>As an example, class component can have <code>state</code>, and it could be manipulated using lifecycle methods such as <code>constructor</code>, <code>componentDidMount</code> and such. However, functional component only accepts <code>props</code> from its parent, and renders accordingly. It wouldn’t keep internal <code>state</code> value, that would be persistent through renders, but rather renders according to whatever passed through <code>props</code>.</p><p>In complex React application, there is parent <em>class component</em> keeping track of state, and manipulate state according to business logic. Afterwards child <em>functional components</em> are passed props, and used only for rendering purpose. These wouldn’t have any persistent state in it, and just used to break down complex components into segments.</p><pre tabindex=0><code>&lt;DigitalWatch&gt;
+Parent class component with state, and business logic to count time.
+
+→ &lt;TimeView time={this.state.time}&gt;
+Child functional component only with props and just rendering props.
+</code></pre><p>React Hooks enable <strong>functional components to attach local state with it, and React will preserve this state between re-renders</strong>. Thereby this will allow React to be used without classes.</p><blockquote><p>However, we often can’t break complex components down any further because the logic is stateful and can’t be extracted to a function or another component.
+— Dan Abramov<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p></blockquote><p><strong>Let&rsquo;s get started with hooks</strong>: (Note that hooks doesn’t work inside classes.)</p><h3 id=state-hook>State Hook</h3><pre tabindex=0><code>import React, { useState } from &#39;react&#39;;
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt; Add &lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt; Remove &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><p>State hook here, just introduce <strong><code>this.State</code></strong> and <strong><code>this.setState</code></strong> to functional components. This <code>useState</code> returns value, its accessor and is initiated at the start: <strong><code>const [state, setState] = useState(initialState);</code></strong>. Thereby in retrospective, in contrast to class components by <code>Constructor</code>, and state manipulated functions such as <em>handleIncrease</em> which was bind to <code>this</code> scope.</p><p>Moreover state hook can be initiated for many types:</p><pre tabindex=0><code>const [num, setNum] = useState(10);
+const [name, setName] = useState(&#39;default&#39;);
+const [obj, setObj] = useState([{ text: &#39;this is object&#39; }]);
+</code></pre><h3 id=effect-hook>Effect Hook</h3><p>Effect hook here, is used to perform side effects in functional components. From familiar user cases, it could be considered combination of methods: <strong><code>componentDidMount</code></strong>, <strong><code>componentDidUpdate</code></strong>, and <strong><code>componentWillUnmount</code></strong>. So when React renders (updates the DOM including first render) component, this hook becomes applied. Typical use cases for effect hooks are data fetching, managing subscriptions and dealing with manual DOM changes.</p><h4 id=effect-hook-without-cleanup>Effect Hook without cleanup</h4><p>Here at each time this functional component renders (including first render and subsequent re-renders due to <code>count</code> change) will execute effect hook function. In this instance it’ll perform side effect of manual DOM change by manipulating external element.</p><pre tabindex=0><code>import React, { useState, useEffect } from &#39;react&#39;;
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() =&gt; {
+     document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt; Click &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><h4 id=conditional-execution-of-effect-hook>Conditional execution of effect hook</h4><p>This effect hook acts for <strong>each render</strong>, so can replace lifecycle methods such as <strong><code>componentDidMount</code></strong> & <strong><code>componentDidUpdate</code></strong>. So in above example, hook function will execute on <strong>component mounting (first render) as well as component updating (re-rendering)</strong>, and might not be required to execute every time. Thereby effect hook execution can be restricted, and decided by <strong>second parameter</strong> passed to <strong><code>useFffect</code></strong>.</p><pre tabindex=0><code>useEffect(() =&gt; {
+  document.title = `You clicked ${count} times`;
+}, [count]);
+</code></pre><p>In above hook, it’ll be executed at first render and whenever there is change in <code>count</code> as . given by second parameter as <code>[count]</code>. Here hook is only useful as long as there is a change to that state value. Moreover if <code>[]</code> is given as parameter, it’ll only be executed as mounting, as there this value is independent of state and will not change with re-renders.</p><h5 id=data-fetching-in-effect-hook>Data fetching in effect hook</h5><p>In class components, data fetching was done in lifecycle methods, and therefore in functional components it’ll be done in hook. As learned above, optional parameter is added so that data fetching happens only in mounting.</p><pre tabindex=0><code>import React, { useState, useEffect } from &#39;react&#39;;
+
+const App = () =&gt; {
+  const [data, setData] = useState({ arr: [], int: 10 });
+  useEffect(() =&gt; {
+     async function fetchData() {
+        const response = await fetchMockAPI();
+        setData({...data, arr: response});
+     }
+
+     fetchData();
+  }, []);
+
+return (
+    &lt;h1&gt;Arr: {data.arr.length} &amp; Int: {data.int}&lt;/h1&gt;
+  );
+}
+
+export default App;
+
+const fetchMockAPI = async() =&gt;
+   new Promise(resolve =&gt; setTimeout(resolve([1,2]), 1000));
+</code></pre><h4 id=effect-hook-with-cleanup>Effect Hook with cleanup</h4><p>Suppose in class component, you’ll be subscripting to external source in <strong><code>componentDidMount</code></strong>. Thereby when removing the component, subscription should be removed in <strong><code>componentWillUnmount</code></strong>. In hooks it&rsquo;s called <strong>cleanup</strong>, and if function is returned from effect hook (optional) it’ll be used for cleanup when unmounting this functional component.</p><pre tabindex=0><code>import React, { useState, useEffect } from &#39;react&#39;;
+
+function FriendStatus(id) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() =&gt; {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
+    ChatAPI.subscribe(id, handleStatusChange);
+    return function cleanup() {
+      ChatAPI.unsubscribe(id, handleStatusChange);
+    };
+  });
+  
+  return(
+     if (isOnline === null) &#39;Loading...&#39;;
+     else isOnline ? &#39;Online&#39; : &#39;Offline&#39;;
+  );
+}
+</code></pre><p>Moreover, it is practical to use multiple effect hooks for separation of concern and to deal with multiple state values.</p><h3 id=context-hook>Context Hook</h3><p>This is applicable when using <strong>Context API</strong> introduced in React 16.3.0 to avoid props drilling. Here context hook can be used to interact with created context.</p><pre tabindex=0><code>import React, { useContext } from &#39;react&#39;;
+const TestContext = React.createContext();
+
+function Display() {
+   const value = useContext(TestContext);
+   return &lt;div&gt;{value}, I am learning react hooks.&lt;/div&gt;;
+}
+
+function App() {
+   return (
+      &lt;TestContext.Provider value={&#34;Kaleem&#34;}&gt;
+         &lt;Display /&gt;
+      &lt;/TestContext.Provider&gt;
+   );
+}
+</code></pre><p>Here provided <code>Context</code> is accessed by child functional component using <strong><code>useContext</code></strong>. Here <code>Context</code> object is passed for context hook, and its <code>value</code> will be accessible in functional component regardless of depth from <code>Context Provider</code>.</p><h3 id=ref-hook>Ref Hook</h3><p>Reference hook can be used to refer React element created by render method. When there are DOM changes, ref’s .current value will be up to date.</p><pre tabindex=0><code>import React, { useRef } from &#39;react&#39;;
+
+function App() {
+  const inputElement = useRef(null);
+  const onButtonClick = () =&gt; {
+    inputElement.current.focus();
+  };
+  return (
+    &lt;&gt;
+      &lt;input ref={inputElement} type=&#34;text&#34; /&gt;
+      &lt;button onClick={onButtonClick}&gt;Focus to input&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre><h3 id=reducer-hook>Reducer Hook</h3><p>This can act as an <strong>alternative for state hook</strong>. All state changes are bundled in to central function called <strong>reducer</strong>, and state will be updated <strong>according to initiated action and existing state</strong>. Developers coming from Redux, this approach should feel familiar and state hook example is rewritten as this:</p><pre tabindex=0><code>import React, { useReducer } from &#39;react&#39;;
+const initialState = {count: 0};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case &#39;inc&#39;: return { count: state.count + 1 };
+    case &#39;decs&#39;: return { count: state.count - 1 };
+    default: throw new Error();
+  }
+}
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    &lt;&gt;
+      &lt;h2&gt;Count: {state.count}&lt;/h2&gt;
+      &lt;button onClick={() =&gt; dispatch({type: &#39;inc&#39;})}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({type: &#39;decs&#39;})}&gt;-&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre><p>Lets sum up major hooks introduced here, and their usage in making stateful smart functional components.</p><pre tabindex=0><code>- Basic Hooks -
+
+State Hook → useState()
+Add state to functional components and preserve during re-renders.
+
+Effect Hook → useEffect()
+Functionality to perform side effects in each renders.
+
+Context Hook → useContext()
+Accepts a React.createContext object and returns its current value.
+
+_____________________________________________________
+useRef . useReducer . useCallback . many more hooks...
+
+React Hooks API: https://reactjs.org/docs/hooks-reference.html
+Create custom hook: https://reactjs.org/docs/hooks-custom.html
+</code></pre><p></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>Extracted from <a href=https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889>medium article</a>.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><footer><ul class=stats><li class=categories><ul><li><a class=article-category-link href=http://codekoala.tech/categories/javascript>javascript</a></li><li><a class=article-category-link href=http://codekoala.tech/categories/reactjs>reactjs</a></li></ul></li><li class=tags><ul><li><a class=article-category-link href=http://codekoala.tech/tags/reactjs>reactjs</a></li><li><a class=article-category-link href=http://codekoala.tech/tags/syntax>syntax</a></li></ul></li></ul></footer></article><div class=pagination><a href=/blog/introduction-to-react-context-api/ class=button><div class=next><div>Introduction to React Context API</div></div></a></div></main><section id=site-sidebar><section id=mini-bio><header><h1>About</h1></header><h6>FULL STACK DEVELOPER.<br>SOFTWARE ENGINEER.<br>COMPUTER SCIENCE GRADUATE.</h6><footer><a href=/about class=button>Learn More</a></footer></section><section id=recent-posts><header><h1>Recent posts</h1></header><article class=mini-post><header><h1><a href=/blog/2020/linux-permissions-and-ownership/>Linux Snippet: File Permissions & Ownership</a></h1><time class=published datetime>March 30, 2020</time></header></article><article class=mini-post><header><h1><a href=/blog/sql-snippet-foreign-keys/>SQL Snippet: Foreign Keys</a></h1><time class=published datetime>September 24, 2019</time></header></article><article class=mini-post><header><h1><a href=/blog/introduction-to-react-context-api/>Introduction to React Context API</a></h1><time class=published datetime>July 20, 2019</time></header></article><article class=mini-post><header><h1><a href=/blog/introduction-to-react-hooks/>Introduction to React Hooks</a></h1><time class=published datetime>July 19, 2019</time></header></article></section><section id=categories><header><h1><a href=/categories>Categories</a></h1></header><ul class=categoryname><li><a href=/categories/javascript/>javascript<span class=count>2</span></a><li><a href=/categories/reactjs/>reactjs<span class=count>2</span></a><li><a href=/categories/database/>database<span class=count>1</span></a><li><a href=/categories/linux/>linux<span class=count>1</span></a><li><a href=/categories/os/>os<span class=count>1</span></a><li><a href=/categories/software/>software<span class=count>1</span></a></li></ul></section></section><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/bundle.min.67aa53a8fb48f23a2dd330d70722d4cf54bc0ecb4764718e5485fc2eb0279993.js integrity="sha256-Z6pTqPtI8jot0zDXByLUz1S8DstHZHGOVIX8LrAnmZM="></script><script src=/js/add-on.js></script><html></html></div></body></html>

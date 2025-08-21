@@ -1,0 +1,114 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><title>CODE KOALA BY BIBI - SQL Snippet: Foreign Keys</title>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.128.1"><meta itemprop=name content="SQL Snippet: Foreign Keys"><meta itemprop=description content="MANAGING RELATIONSHIPS BETWEEN DATABASE ATTRIBUTES."><meta itemprop=datePublished content="2019-09-24T00:00:00+00:00"><meta itemprop=dateModified content="2019-09-24T00:00:00+00:00"><meta itemprop=wordCount content="1559"><meta itemprop=image content="http://codekoala.tech/img/2019/sql-foreign-keys.png"><meta itemprop=keywords content="Sql,Syntax"><meta property="og:url" content="http://codekoala.tech/blog/sql-snippet-foreign-keys/"><meta property="og:site_name" content="Code Koala"><meta property="og:title" content="SQL Snippet: Foreign Keys"><meta property="og:description" content="MANAGING RELATIONSHIPS BETWEEN DATABASE ATTRIBUTES."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2019-09-24T00:00:00+00:00"><meta property="article:modified_time" content="2019-09-24T00:00:00+00:00"><meta property="article:tag" content="Sql"><meta property="article:tag" content="Syntax"><meta property="og:image" content="http://codekoala.tech/img/2019/sql-foreign-keys.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://codekoala.tech/img/2019/sql-foreign-keys.png"><meta name=twitter:title content="SQL Snippet: Foreign Keys"><meta name=twitter:description content="MANAGING RELATIONSHIPS BETWEEN DATABASE ATTRIBUTES."><html></html><link rel=stylesheet href=/css/bundle.min.1004409345ccc830f3b1796ed1c97699aab1699867359a9d3d19c18fd7813890.css integrity="sha256-EARAk0XMyDDzsXlu0cl2maqxaZhnNZqdPRnBj9eBOJA="><link rel=stylesheet href=/css/add-on.css><link disabled id=dark-mode-theme rel=stylesheet href=/css/dark-theme.css></head><body><header id=site-header><nav id=site-nav><h1 class=nav-title><a href=/><img src=/img/main/koala2.png width=50 alt="navbar logo">
+Code Koala by BIBI</a></h1><menu id=site-nav-menu class=flyout-menu><a href=/ class=link><i class='fa fa-home'></i> Home</a>
+<a href=/about/ class=link><i class='far fa-id-card'></i> About</a>
+<a href=/blog/ class=link><i class='far fa-newspaper'></i> Blog</a>
+<a href=/categories/ class=link><i class='fas fa-sitemap'></i> Categories</a>
+<a href=/tags/ class=link><i class='fa fa-tags'></i> Tags</a>
+<a href=#share-menu class=share-toggle><i class="fas fa-share-alt">&nbsp;</i>Share</a></menu><i id=dark-mode-toggle class="fa fa-moon fa-2x">&nbsp;</i>
+<a href=#share-menu class=share-toggle><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+<a href=#lang-menu class=lang-toggle lang=en>en</a>
+<a href=#site-nav class=nav-toggle><i class="fas fa-bars fa-2x"></i></a></nav><menu id=lang-menu class=flyout-menu><a href=# lang=en class="link active">English (en)</a></menu><menu id=share-menu class=flyout-menu><h1>Share Post</h1><a href="//twitter.com/share?text=SQL%20Snippet%3a%20Foreign%20Keys&amp;url=http%3a%2f%2fcodekoala.tech%2fblog%2fsql-snippet-foreign-keys%2f" target=_blank rel=noopener class="share-btn twitter"><i class="fab fa-twitter"></i><p>&nbsp;Twitter</p></a><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fcodekoala.tech%2fblog%2fsql-snippet-foreign-keys%2f&amp;title=SQL%20Snippet%3a%20Foreign%20Keys" target=_blank rel=noopener class="share-btn linkedin"><i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p></a><a href target=_blank class="share-btn email" data-proofer-ignore><i class="fas fa-envelope"></i><p>&nbsp;Email</p></a></menu></header><div id=wrapper><main id=site-main><article class=post><header><div class=title><h2><a href=/blog/sql-snippet-foreign-keys/>SQL Snippet: Foreign Keys</a></h2><h6>MANAGING RELATIONSHIPS BETWEEN DATABASE ATTRIBUTES.</h6></div><div class=meta><time class=published datetime="2019-09-24 00:00:00 +0000 UTC">September 24, 2019
+</time><span class=author>Udara Bibile</span>
+<a href=/about><img style=width:5em src=/img/udarabibile.jpg></img></a><br><p>8 minutes read</p></div></header><section id=socnet-share><a href="//twitter.com/share?text=SQL%20Snippet%3a%20Foreign%20Keys&amp;url=http%3a%2f%2fcodekoala.tech%2fblog%2fsql-snippet-foreign-keys%2f" target=_blank rel=noopener class="share-btn twitter"><i class="fab fa-twitter"></i><p>&nbsp;Twitter</p></a><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fcodekoala.tech%2fblog%2fsql-snippet-foreign-keys%2f&amp;title=SQL%20Snippet%3a%20Foreign%20Keys" target=_blank rel=noopener class="share-btn linkedin"><i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p></a><a href target=_blank class="share-btn email" data-proofer-ignore><i class="fas fa-envelope"></i><p>&nbsp;Email</p></a></section><div class=content><p>If you have worked with SQL based database, I guess y’all are familiar with <strong>usage of foreign keys to manage relationship between tables.</strong></p><h2 id=relationship-types>Relationship Types</h2><p>Lets dive into a famous example involving book — author connection to gain insight. There are variety of connection between these entities, in a graphical:</p><ul><li><strong>one to one</strong> →an author can write only one book, and a book only have one author.</li><li><strong>one to many</strong> →an author can write multiple books, but book can only have one author.</li><li><strong>many to many</strong> →an author can write multiple books, and also a book can be written by multiple authors.</li></ul><p>Lets look into above scenarios for ease of this tutorial, even though some scenarios doesn&rsquo;t seem accurate in real world.</p><p>SQL snippets found in this article is written to support SQLite and can be tested in <a href=https://sqliteonline.com/>https://sqliteonline.com/</a>.</p><h3 id=one-to-one-relationship>One-to-One relationship</h3><p>Each of author and book table will have <strong>primary keys</strong> to identify each value uniquely. <strong>Author</strong> table will have <code>Pk_author_id</code>, and <strong>Book</strong> table will have <code>Pk_book_Id</code> as unique identifier for each table. To form relationship between two tables, foreign key references should be added. Here each entry in <strong>Book</strong> table, it will refer <code>author_Id</code> to keep track of connected entry identifier in <strong>Author</strong> table.</p><p>Lets dig into SQL code as to how it can be done:</p><pre tabindex=0><code>CREATE TABLE Author (
+   Pk_author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   Name TEXT,
+   Country TEXT
+);
+CREATE TABLE Book (
+   Pk_book_Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   Title TEXT,
+   Fk_author_Id INTEGER UNIQUE,
+   FOREIGN KEY (Fk_author_Id) REFERENCES Author(Pk_author_id)
+);
+</code></pre><p>TODO: HIGHLIGHT WITHIN CODE BLOCK</p><p>Here when setting up Book table, a connection to author is attached via an id. Lets add some values to test one-to-one relationship.</p><pre tabindex=0><code>INSERT INTO Author (Name, Country) VALUES (&#39;Leo Tolstoy&#39;, &#39;Russia&#39;);
+INSERT INTO Book (Title, Fk_author_Id) VALUES (&#39;War &amp; Peace&#39;, 1);
+</code></pre><p>Thereby after inserting these values, formed relationship can be queried:</p><pre tabindex=0><code>SELECT Book.Title, Author.Name, Author.Country
+FROM Book INNER JOIN Author
+ON Author.Pk_author_id = Book.Fk_author_Id
+</code></pre><table><thead><tr><th>Title</th><th>Name</th><th>Country</th></tr></thead><tbody><tr><td>War & Peace</td><td>Leo Tolstoy</td><td>Russia</td></tr></tbody></table><p>However since this is one-to-one relationship implementation, there should be restriction of adding another book for this author.</p><pre tabindex=0><code>INSERT INTO Book (Title, Fk_author_Id) VALUES (&#39;Anna Karenina&#39;, 1);
+→ Results in UNIQUE constraint failed: Book.Fk_author_Id
+</code></pre><p>Due to <strong>UNIQUE</strong> keyword introduced to <code>Fk_author_Id</code> attribute in Book table, it would restrict adding any record by used author_Id. Thereby making it one-to-one relationship.</p><h3 id=one-to-many-relationship>One-to-Many relationship</h3><p>Building upon previous example, this scenario should allow an author to write multiple books. By looking into how one-to-one relationship was implemented using UNIQUE keyword, it can be seen that <strong>removing UNIQUE keyword</strong> would make it one-to-many relationship. Book table should have been created as such.</p><pre tabindex=0><code>CREATE TABLE Book (
+   Pk_book_Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   Title TEXT,
+   Fk_author_Id INTEGER,
+   FOREIGN KEY (Fk_author_Id) REFERENCES Author(Pk_author_id)
+);
+</code></pre><p>And add values as such without facing an issue like previously.</p><pre tabindex=0><code>INSERT INTO Author (Name, Country) VALUES (&#39;Leo Tolstoy&#39;, &#39;Russia&#39;);
+INSERT INTO Book (Title, Fk_author_Id) VALUES (&#39;War &amp; Peace&#39;, 1);
+INSERT INTO Book (Title, Fk_author_Id) VALUES (&#39;Anna Karenina&#39;, 1);
+</code></pre><p>Lets query and see that one-to-many relationship exists. Here an author have been attached to multiple books.</p><table><thead><tr><th>Title</th><th>Name</th><th>Country</th></tr></thead><tbody><tr><td>War & Peace</td><td>Leo Tolstoy</td><td>Russia</td></tr><tr><td>Anna Karenina</td><td>Leo Tolstoy</td><td>Russia</td></tr></tbody></table><h3 id=many-to-many-relationship>Many-to-Many relationship</h3><p>Simply in this occasion an author can be attached to multiple books, and a book can be attached to multiple authors. This is more closer to real world.</p><p>In document based databases such as MongoDB or such this can be simple due to usage of array. Simple example can be as follows:</p><pre tabindex=0><code>// Authors
+{ Id: 1, Name: &#39;Larry Bird&#39;, BookIds: [1] }
+{ Id: 2, Name: &#39;Magic Johnson&#39;, BookIds: [1,2] }
+
+// Books
+{ Id: 1, Title: &#39;When the game was ours&#39;, AuthorIds: [1, 2] }
+{ Id: 2, Title: &#39;Drive&#39;, AuthorIds: [1] }
+</code></pre><p>With just using flexibility of NoSQL and arrays many-to-many relationship is simply made. However due to unavailability of array in SQL, different approach is taken to handle such relationship.</p><p>In order to create many-to-many relationship, a join table is created to record unique identifiers of connected values. As per example in order to join <strong>Book</strong> and <strong>Author</strong> tables, another table called <strong>Author_Book</strong> is created.</p><p>Lets create two simple tables without any relationship for <strong>Book</strong> and <strong>Author</strong>.</p><pre tabindex=0><code>CREATE TABLE Author (
+   Pk_author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+   Name TEXT,
+   Country TEXT
+);
+
+CREATE TABLE Book (
+   Pk_book_Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   Title TEXT
+);
+</code></pre><p>Then create joining table, adding parent tables’ primary keys as foreign keys in join table. Additional property related to relationship can also be stored here such as <strong>Extra_value</strong>.</p><pre tabindex=0><code>CREATE TABLE Author_Book (
+   Fk_author_id INTEGER NOT NULL,
+   Fk_book_id INTEGER NOT NULL,
+   Extra_value TEXT,
+   FOREIGN KEY (Fk_author_id) REFERENCES Author(Pk_author_id),
+   FOREIGN KEY (Fk_book_id) REFERENCES Book(Pk_book_Id),
+   PRIMARY KEY (Fk_author_id, Fk_book_id)
+);
+</code></pre><p>Each entry in this join table, will include primary keys of parent tables. As an example, <code>Fk_author_id</code> is unique identifier in <strong>Author</strong> table, and <code>Fk_book_id</code> is unique identifier in <strong>Book</strong> table. Thereby (<code>Fk_author_id</code>, <code>Fk_book_id</code>) tuple or composite key will be unique itself, and thereby separate unique identifier or primary key for <strong>Author_Book</strong> is not essential. However integer auto incrementing value can be added as primary key, but it’ll be redundant.</p><p>Here this table just contains each combination of given many-to-many relationship. Lets enter some data and query.</p><pre tabindex=0><code>INSERT INTO Author (Pk_author_id, name, country)
+VALUES (1, &#39;Larry Bird&#39;, &#39;USA&#39;);
+
+INSERT INTO Author (Pk_author_id, name, country)
+VALUES (2, &#39;Magic Johnson&#39;, &#39;USA&#39;);
+
+INSERT INTO Book (Pk_book_Id, Title)
+VALUES (1, &#39;When the game was ours&#39;);
+
+INSERT INTO Book (Pk_book_Id, Title)
+VALUES (2, &#39;Drive&#39;);
+</code></pre><p>Lets add many-to-many relationship between them:</p><pre tabindex=0><code>INSERT INTO Author_Book(Fk_author_id, Fk_book_id) VALUES (1, 1);
+INSERT INTO Author_Book(Fk_author_id, Fk_book_id) VALUES (2, 1);
+INSERT INTO Author_Book(Fk_author_id, Fk_book_id) VALUES (1, 2);
+</code></pre><p>Lets query the database by join all three tables and extract required values:</p><pre tabindex=0><code>SELECT Author.Name AS &#39;Name&#39;, Book.Title AS &#39;Title&#39;
+FROM Author, Book, Author_Book
+WHERE Author.Pk_author_id = Author_Book.Fk_author_id
+   AND Book.Pk_book_Id = Author_Book.Fk_book_id;
+</code></pre><table><thead><tr><th>Name</th><th>Title</th></tr></thead><tbody><tr><td>Larry Bird</td><td>When the game was ours</td></tr><tr><td>Magic Johnson</td><td>When the game was ours</td></tr><tr><td>Larry Bird</td><td>Drive</td></tr></tbody></table><h2 id=foreign-key-constraints>Foreign Key Constraints</h2><p>Here connections are made between tables, and now records are connected. Now lets try to remove these connection:</p><pre tabindex=0><code>DELETE FROM Author WHERE Name=&#34;Larry Bird&#34;;
+</code></pre><p>Here <strong>Author</strong> value is deleted without any issue, but these raises concern about relationships made. Thereby inconsistent data is still available, such as this author already referred in <strong>Author_Book</strong>.</p><p>SQL allows functionality to avoid such inconsistent data, by disabling or handling such deletion. <strong>Foreign key constraints</strong> are there to handle it, and lets create new tables to test these.</p><h3 id=restrict>RESTRICT</h3><p>Restricting any deletion of references can be an approach foreign keys constraints can be added.</p><pre tabindex=0><code>DROP TABLE IF EXISTS Book;
+DROP TABLE IF EXISTS Author;
+CREATE TABLE Author(AuthorId INTEGER PRIMARY KEY, Name TEXT);
+CREATE TABLE Book(BookId INTEGER PRIMARY KEY, Title TEXT,
+    AuthorId INTEGER, 
+    FOREIGN KEY(AuthorId) REFERENCES Author(AuthorId));
+INSERT INTO Author VALUES (1, &#39;Leo Tolstoy&#39;);
+INSERT INTO Book VALUES (1,&#39;War &amp; Peace&#39;,1);
+INSERT INTO Book VALUES (2,&#39;Anna Karenia&#39;,1);
+</code></pre><p>Enable foreign key constraints and try to delete connected record.</p><pre tabindex=0><code>PRAGMA foreign_keys=1;
+   → Enable foreign keys constraints in SQLite.
+DELETE FROM Author WHERE AuthorId=1;
+   → FOREIGN KEY constraint failed, Due to Books for that Author.
+DELETE FROM Book WHERE AuthorId=1;
+   → Books related to that Author deleted without an issue.
+DELETE FROM Author WHERE AuthorId=1;
+   → Author can be deleted now, as related books are deleted.
+</code></pre><p>As seen when foreign keys constraints are enforced, any deletion or updates are not allowed. That behavior is called <strong>RESTRICT</strong>, added by default.</p><h3 id=on-delete-cascade>ON DELETE CASCADE</h3><p>However when creating the table, required behavior for foreign key constraints can be decided. Such action is <strong>ON DELETE CASCADE</strong>, which indicates that action (DELETE) should be propagated by related foreign keys from parent table (Author) to child table (Book). Simply if parent value is deleted, all other records keeping reference to that parent value is to be deleted.</p><pre tabindex=0><code>CREATE TABLE Book(BookId INTEGER PRIMARY KEY, Title TEXT,
+    AuthorId INTEGER, FOREIGN KEY(AuthorId) REFERENCES Author(AuthorId) ON DELETE CASCADE);
+   → CREATE Book table as above with condition
+SELECT Title, Name FROM Author, Book;
+   → Add data as added previously.
+DELETE FROM Author WHERE AuthorId=1;
+   → No foreign key violation invoked. Deleting from Author &amp; Book
+</code></pre><h3 id=on-delete-set-null>ON DELETE SET NULL</h3><p>If values on child tables, are <strong>not to be deleted but rather be altered</strong> according to deleted values in parent table this approach can be used. Here references in child table to parent table will be set to null, and row wouldn&rsquo;t be deleted.</p><pre tabindex=0><code>CREATE TABLE Book(BookId INTEGER PRIMARY KEY, Title TEXT,
+    AuthorId INTEGER, FOREIGN KEY(AuthorId) REFERENCES Author(AuthorId) ON DELETE SET NULL);
+DELETE FROM Author WHERE AuthorId=1;
+   → No foreign key violation invoked.
+   → Deleting from Author. Set null in Book.
+SELECT * FROM Book;
+</code></pre><table><thead><tr><th>BookId</th><th>Title</th><th>AuthorId</th></tr></thead><tbody><tr><td>1</td><td>War & Peace</td><td>null</td></tr><tr><td>2</td><td>Anna Karenina</td><td>null</td></tr></tbody></table><p>Moreover, it should be noted that restriction happened only when deleting from Author table, and not from Book table. This is the expected behavior where <strong>foreign key relationship is only one way</strong>, from parent table (Author) towards child table (Book). Here Book can’t be created unless Author is explicitly connected, and at deletion Book wouldn&rsquo;t be referred in any other tables. However when trying to delete Author, it could be referred elsewhere in Book table, so constraints applied.</p><p>From this <strong>SQL Snippet</strong>, I think y’all are able to insight into managing data relationship in SQL database tables. Note that SQLite code segments are used here, and other implementation might vary little.</p><p></p></div><footer><ul class=stats><li class=categories><ul><li><a class=article-category-link href=http://codekoala.tech/categories/database>database</a></li><li><a class=article-category-link href=http://codekoala.tech/categories/software>software</a></li></ul></li><li class=tags><ul><li><a class=article-category-link href=http://codekoala.tech/tags/sql>sql</a></li><li><a class=article-category-link href=http://codekoala.tech/tags/syntax>syntax</a></li></ul></li></ul></footer></article><div class=pagination><a href=/blog/introduction-to-react-context-api/ class=button><div class=previous><div>Introduction to React Context API</div></div></a><a href=/blog/2020/linux-permissions-and-ownership/ class=button><div class=next><div>Linux Snippet: File Permissions & Ownership</div></div></a></div></main><section id=site-sidebar><section id=mini-bio><header><h1>About</h1></header><h6>FULL STACK DEVELOPER.<br>SOFTWARE ENGINEER.<br>COMPUTER SCIENCE GRADUATE.</h6><footer><a href=/about class=button>Learn More</a></footer></section><section id=recent-posts><header><h1>Recent posts</h1></header><article class=mini-post><header><h1><a href=/blog/2020/linux-permissions-and-ownership/>Linux Snippet: File Permissions & Ownership</a></h1><time class=published datetime>March 30, 2020</time></header></article><article class=mini-post><header><h1><a href=/blog/sql-snippet-foreign-keys/>SQL Snippet: Foreign Keys</a></h1><time class=published datetime>September 24, 2019</time></header></article><article class=mini-post><header><h1><a href=/blog/introduction-to-react-context-api/>Introduction to React Context API</a></h1><time class=published datetime>July 20, 2019</time></header></article><article class=mini-post><header><h1><a href=/blog/introduction-to-react-hooks/>Introduction to React Hooks</a></h1><time class=published datetime>July 19, 2019</time></header></article></section><section id=categories><header><h1><a href=/categories>Categories</a></h1></header><ul class=categoryname><li><a href=/categories/javascript/>javascript<span class=count>2</span></a><li><a href=/categories/reactjs/>reactjs<span class=count>2</span></a><li><a href=/categories/database/>database<span class=count>1</span></a><li><a href=/categories/linux/>linux<span class=count>1</span></a><li><a href=/categories/os/>os<span class=count>1</span></a><li><a href=/categories/software/>software<span class=count>1</span></a></li></ul></section></section><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/bundle.min.67aa53a8fb48f23a2dd330d70722d4cf54bc0ecb4764718e5485fc2eb0279993.js integrity="sha256-Z6pTqPtI8jot0zDXByLUz1S8DstHZHGOVIX8LrAnmZM="></script><script src=/js/add-on.js></script><html></html></div></body></html>
