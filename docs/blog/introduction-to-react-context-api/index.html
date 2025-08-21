@@ -1,0 +1,192 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><title>CODE KOALA BY BIBI - Introduction to React Context API</title>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.128.1"><meta itemprop=name content="Introduction to React Context API"><meta itemprop=description content="Avoid props drilling to child components"><meta itemprop=datePublished content="2019-07-20T00:00:00+00:00"><meta itemprop=dateModified content="2019-07-20T00:00:00+00:00"><meta itemprop=wordCount content="1287"><meta itemprop=image content="http://codekoala.tech/img/2019/react-context-api.png"><meta itemprop=keywords content="Reactjs,Syntax"><meta property="og:url" content="http://codekoala.tech/blog/introduction-to-react-context-api/"><meta property="og:site_name" content="Code Koala"><meta property="og:title" content="Introduction to React Context API"><meta property="og:description" content="Avoid props drilling to child components"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2019-07-20T00:00:00+00:00"><meta property="article:modified_time" content="2019-07-20T00:00:00+00:00"><meta property="article:tag" content="Reactjs"><meta property="article:tag" content="Syntax"><meta property="og:image" content="http://codekoala.tech/img/2019/react-context-api.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://codekoala.tech/img/2019/react-context-api.png"><meta name=twitter:title content="Introduction to React Context API"><meta name=twitter:description content="Avoid props drilling to child components"><html></html><link rel=stylesheet href=/css/bundle.min.1004409345ccc830f3b1796ed1c97699aab1699867359a9d3d19c18fd7813890.css integrity="sha256-EARAk0XMyDDzsXlu0cl2maqxaZhnNZqdPRnBj9eBOJA="><link rel=stylesheet href=/css/add-on.css><link disabled id=dark-mode-theme rel=stylesheet href=/css/dark-theme.css></head><body><header id=site-header><nav id=site-nav><h1 class=nav-title><a href=/><img src=/img/main/koala2.png width=50 alt="navbar logo">
+Code Koala by BIBI</a></h1><menu id=site-nav-menu class=flyout-menu><a href=/ class=link><i class='fa fa-home'></i> Home</a>
+<a href=/about/ class=link><i class='far fa-id-card'></i> About</a>
+<a href=/blog/ class=link><i class='far fa-newspaper'></i> Blog</a>
+<a href=/categories/ class=link><i class='fas fa-sitemap'></i> Categories</a>
+<a href=/tags/ class=link><i class='fa fa-tags'></i> Tags</a>
+<a href=#share-menu class=share-toggle><i class="fas fa-share-alt">&nbsp;</i>Share</a></menu><i id=dark-mode-toggle class="fa fa-moon fa-2x">&nbsp;</i>
+<a href=#share-menu class=share-toggle><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+<a href=#lang-menu class=lang-toggle lang=en>en</a>
+<a href=#site-nav class=nav-toggle><i class="fas fa-bars fa-2x"></i></a></nav><menu id=lang-menu class=flyout-menu><a href=# lang=en class="link active">English (en)</a></menu><menu id=share-menu class=flyout-menu><h1>Share Post</h1><a href="//twitter.com/share?text=Introduction%20to%20React%20Context%20API&amp;url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-context-api%2f" target=_blank rel=noopener class="share-btn twitter"><i class="fab fa-twitter"></i><p>&nbsp;Twitter</p></a><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-context-api%2f&amp;title=Introduction%20to%20React%20Context%20API" target=_blank rel=noopener class="share-btn linkedin"><i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p></a><a href target=_blank class="share-btn email" data-proofer-ignore><i class="fas fa-envelope"></i><p>&nbsp;Email</p></a></menu></header><div id=wrapper><main id=site-main><article class=post><header><div class=title><h2><a href=/blog/introduction-to-react-context-api/>Introduction to React Context API</a></h2><h6>Avoid props drilling to child components</h6></div><div class=meta><time class=published datetime="2019-07-20 00:00:00 +0000 UTC">July 20, 2019
+</time><span class=author>Udara Bibile</span>
+<a href=/about><img style=width:5em src=/img/udarabibile.jpg></img></a><br><p>7 minutes read</p></div></header><section id=socnet-share><a href="//twitter.com/share?text=Introduction%20to%20React%20Context%20API&amp;url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-context-api%2f" target=_blank rel=noopener class="share-btn twitter"><i class="fab fa-twitter"></i><p>&nbsp;Twitter</p></a><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fcodekoala.tech%2fblog%2fintroduction-to-react-context-api%2f&amp;title=Introduction%20to%20React%20Context%20API" target=_blank rel=noopener class="share-btn linkedin"><i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p></a><a href target=_blank class="share-btn email" data-proofer-ignore><i class="fas fa-envelope"></i><p>&nbsp;Email</p></a></section><div class=content><p>From <strong>React’s version 16.3.0</strong>, Context API is officially released to avoid props drilling to child components.</p><p>In order to understand use of React context and its application, lets look into what complication its trying to fix.</p><pre tabindex=0><code>import React from &#39;react&#39;;
+
+const App = () =&gt; {
+    return &lt;Menu colour=&#34;blue&#34; language=&#34;en&#34; /&gt;;
+}
+
+function Menu(props) {
+    return(
+        &lt;MenuItem 
+            colour={props.colour}
+            language={props.language}
+        /&gt;
+    )
+}
+
+function MenuItem(props) {
+    return(
+        &lt;div&gt;
+            &lt;p&gt;Theme colour: {props.colour}&lt;/p&gt;
+            &lt;p&gt;Locale: {props.language}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default App;
+</code></pre><p>In our React application, there can be global properties such as <strong>language</strong>, or <strong>theme colour</strong> that will configured at top most component in <code>&lt;App /></code> . These properties will be used by child components & also grand child components. Here in above example <code>&lt;MenuItem></code> element may need value of colour for styling, and language for localization. However these properties had to be passed through <code>&lt;Menu /></code> component, even though its not used in <code>&lt;Menu /></code>.</p><pre tabindex=0><code>&lt;App /&gt; → &lt;Menu /&gt; → &lt;MenuItem /&gt;
+</code></pre><p>Thereby each of these global properties, have to be <strong>mapped as props from intermediate components</strong> even though it may not be used in-between. This is called <strong>props drilling</strong> and may introduce <strong>redundant mapping of props</strong> for complex application for multiple properties.</p><h3 id=context-api>Context API</h3><blockquote><p>“Context provides a way to pass data through the component tree without having to pass props down manually at every level.”
+→ React Docs</p></blockquote><p>React’s Context API is introduced to address issue of props drilling, where <strong>higher order component’s context can be accessed by child component without mapping props in intermediate components</strong>.</p><h4 id=create-context-by-react-context>Create context by React Context</h4><p>Lets create a context, where default value should be passed to initiate.</p><pre tabindex=0><code>const AppContext = React.createContext({ lang: &#39;en&#39; });
+</code></pre><p>This context object, has <code>Provider</code> and <code>Consumer</code> with it. Or can extract these properties separately.</p><pre tabindex=0><code>--- Can be used in AppContext.js ---
+export const AppProvider = AppContext.Provider;
+export const AppConsumer = AppContext.Consumer;
+
+--- OR ---
+const { Provider, Consumer } = React.createContext();
+</code></pre><h4 id=set-context-using-context-provider>Set context using Context Provider</h4><p>In order for context value to be addressed at lower levels, context should be attached to higher level component intended. Here this component will be wrapped by <code>Context.Provider</code>, and current value is attached to it as <code>value</code>.</p><pre tabindex=0><code>const App = () =&gt;
+   &lt;AppContext.Provider value={{ lang: &#39;fr&#39; }}&gt;
+         &lt;Menu&gt;
+   &lt;AppContext.Provider /&gt;
+</code></pre><p><strong>Note</strong>, that in here value is <strong>not passed as props to <code>&lt;Menu></code></strong> component, avoiding props drilling. Moreover instead of using <code>&lt;AppContext.Provider></code>, we can also use <code>&lt;AppProvider value=""></code> as above if imported from external file.</p><h4 id=get-context-by-context-consumer>Get context by Context Consumer</h4><p>To access context, which was provided from above <strong>Consumer</strong> can be used.</p><pre tabindex=0><code>const MenuItem = () =&gt;
+   &lt;AppContext.Consumer&gt;
+      { value =&gt;
+         &lt;p&gt;Locale: {value.lang}&lt;/p&gt;
+      }
+   &lt;/AppContext.Consumer&gt;
+</code></pre><p>As in providing context example, consuming component is also wrapped in <code>&lt;AppContext.Consumer></code>. And <code>value</code> passed to <code>&lt;AppContext.Provider></code> can be accessed as above.</p><h4 id=get-context-by-class-contexttype>Get context by Class contextType</h4><p>If using class components in React application, its <code>contextType</code> property can be utilized to access context data. In can be accessed in class as <code>this.context</code>.</p><pre tabindex=0><code>class MenuItem extends React.Component {
+   static contextType = AppContext;
+
+   render() {
+      const appContext = this.context;
+      return (&lt;p&gt;{appContext.lang}&lt;/p&gt;);
+   }
+}
+</code></pre><p>Here <code>contextType</code> is set to required context object using <strong>static</strong> value. Another approach is attaching to context to <code>contextType</code> of class itself</p><pre tabindex=0><code>class MenuItem extends React.Component {
+   ...
+}
+MenuItem.contextType = AppContext;
+</code></pre><p>Lets recreate above props drilling example using React Context here:</p><pre tabindex=0><code>import React from &#39;react&#39;;
+
+const AppContext = React.createContext({ colour: &#39;blue&#39;, lang: &#39;en&#39; });
+
+const App = () =&gt; 
+    &lt;AppContext.Provider value={{ colour: &#39;blue&#39;, lang: &#39;fr&#39; }}&gt;
+        &lt;Menu /&gt;
+    &lt;/AppContext.Provider&gt;;
+
+function Menu() {
+    return &lt;MenuItem /&gt;
+}
+
+const MenuItem = () =&gt;
+    &lt;AppContext.Consumer&gt;
+        { value =&gt;
+            &lt;div&gt;
+                &lt;p&gt;Theme colour: {value.colour}&lt;/p&gt;
+                &lt;p&gt;Locale: {value.lang}&lt;/p&gt;
+            &lt;/div&gt;
+        }
+    &lt;/AppContext.Consumer&gt;
+
+export default App;
+</code></pre><p>In above implementation, theme related information are passed from <code>&lt;App></code> component directly into <code>&lt;MenuItem></code> component, without being mapped in intermediate <code>&lt;Menu></code> component.</p><h4 id=changing-value-of-react-context>Changing value of React Context</h4><p>In these examples, <code>value</code> passed to <code>React.Context</code> is constant. Therefore there is not that much advantage of passing through context, but rather fetch just from configuration file. But in real application, this <code>value</code> is to change according to user interaction. As example application colour could be changed by user preference, or language can be switched by geographical area.</p><pre tabindex=0><code>import React, { useState } from &#39;react&#39;;
+
+const languages = { en: &#39;en&#39;, fr: &#39;fr&#39; };
+const initialTheme = { colour: &#39;blue&#39;, lang: languages.en };
+const { Provider: AppProvider, Consumer: AppConsumer } = React.createContext(initialTheme);
+
+const App = () =&gt; {
+
+    const [theme, setTheme] = useState(initialTheme);
+
+    const setLanguage = (lang) =&gt; {
+        setTheme({ ...theme, lang: lang });
+    }
+
+    return (
+        &lt;AppProvider value={theme}&gt;
+            &lt;button onClick={() =&gt; setLanguage(languages.en)}&gt;English&lt;/button&gt;
+            &lt;button onClick={() =&gt; setLanguage(languages.fr)}&gt;French&lt;/button&gt;
+            &lt;Menu /&gt;
+        &lt;/AppProvider&gt;
+    );
+}
+
+const Menu = () =&gt; &lt;MenuItem /&gt;;
+
+const MenuItem = () =&gt;
+    &lt;AppConsumer&gt;
+        { value =&gt;
+            &lt;div&gt;
+                &lt;p&gt;Theme colour: {value.colour}&lt;/p&gt;
+                &lt;p&gt;Locale: {value.lang}&lt;/p&gt;
+            &lt;/div&gt;
+        }
+    &lt;/AppConsumer&gt;
+
+export default App;
+</code></pre><p>In <code>&lt;App></code> component, theme values are kept in the state. (Note: here React hook is used for state management. If unfamiliar, its just <code>this.state</code> and <code>this.setState</code> in class perspective and refer to my <strong>React Hooks article here</strong>) This <code>state</code> value is passed as <code>value</code> for <code>Context.Provider</code>. Moreover theme related <code>state</code> value can be changed by other component as given by buttons. When <code>state</code> changes in <code>&lt;App></code>, it’ll also be reflected in value in context. Thereby any <code>Context.Consumer</code> accessing <code>value</code> will get <strong>current</strong> updated changes.</p><p>However, in here <code>context</code> was changed by highest level, where it has access to <code>state</code> variable to manipulate. However this might not be the case and child components need to invoke functions to make context changes. For this context changing function can be attached to <code>context</code> itself and passed as <code>value</code> for child components. Here <code>setLanguage</code> is passed as callback function to <code>context</code> object to make state change and then context <code>value</code> change.</p><pre tabindex=0><code>{
+  lang: &#39;en&#39;,
+  setLanguage: (lang) =&gt; { ...callback function here }
+}
+</code></pre><pre tabindex=0><code>import React, { useState } from &#39;react&#39;;
+
+const languages = { en: &#39;en&#39;, fr: &#39;fr&#39; };
+const initialTheme = { colour: &#39;blue&#39;, lang: languages.en, setLanguage: () =&gt; {} };
+const { Provider: AppProvider, Consumer: AppConsumer } = React.createContext(initialTheme);
+
+const App = () =&gt; {
+
+    const setLanguage = (lang) =&gt; {
+        setTheme({ ...theme, lang: lang });
+    }
+
+    const [theme, setTheme] = useState({...initialTheme, setLanguage: setLanguage});
+
+    return (
+        &lt;AppProvider value={theme}&gt;
+            &lt;LanguagePicker /&gt;
+            &lt;Menu /&gt;
+        &lt;/AppProvider&gt;
+    );
+}
+
+const Menu = () =&gt; &lt;MenuItem /&gt;;
+
+const LanguagePicker = () =&gt;
+    &lt;AppConsumer&gt;
+        {context =&gt;
+            &lt;div&gt;
+                &lt;button onClick={() =&gt; context.setLanguage(languages.en)}&gt;English&lt;/button&gt;
+                &lt;button onClick={() =&gt; context.setLanguage(languages.fr)}&gt;French&lt;/button&gt;
+            &lt;/div&gt;
+        }
+    &lt;/AppConsumer&gt;
+
+const MenuItem = () =&gt;
+    &lt;AppConsumer&gt;
+        { value =&gt;
+            &lt;div&gt;
+                &lt;p&gt;Theme colour: {value.colour}&lt;/p&gt;
+                &lt;p&gt;Locale: {value.lang}&lt;/p&gt;
+            &lt;/div&gt;
+        }
+    &lt;/AppConsumer&gt;
+
+export default App;
+</code></pre><h4 id=use-of-multiple-contexts>Use of multiple contexts</h4><p>According to application, there might be requirement of using multiple context objects. React supports this, but implementation can be bit messy as contexts will be nested here and nesting keeps adding up if more that 2 contexts needed.</p><pre tabindex=0><code>&lt;LanguageContext.Provider value={lang}&gt;
+   &lt;ColourContext.Provider value={colour}&gt;
+      &lt;Menu /&gt;
+   &lt;/ColourContext.Provider&gt;
+&lt;/LanguageContext.Provider&gt;
+</code></pre><p>Accessing context will also be nested:</p><pre tabindex=0><code>&lt;LanguageContext.Consumer&gt;
+   {lang =&gt; (
+   &lt;ColourContext.Consumer&gt;
+      {colour =&gt; (
+         &lt;p&gt;Lang: {lang} and colour: {colour}&lt;/p&gt;
+      )}
+   &lt;/ColourContext.Consumer&gt;
+   )}
+&lt;/LanguageContext.Consumer&gt;
+</code></pre><p>It should be noted that when <strong>context changes in parent component, its child components dependent on the context value should also be changed and re-rendered</strong>. Change in context value is determined by <strong>reference identity</strong>, where React keeps track whether <code>value</code> is changed by reference. Thereby unnecessary re-renders of consumer components needs to be handled when provider re-render for unrelated change. Refer to react docs here for more information on this, and avoiding such re-renders.</p><p>Just to wrap it up, React Context API is introduced to avoid props drilling in React applications.</p><blockquote><p>Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language. →React Context Docs</p></blockquote><p>TODO: LINK TO HOOKS ARTICLE</p><p></p></div><footer><ul class=stats><li class=categories><ul><li><a class=article-category-link href=http://codekoala.tech/categories/javascript>javascript</a></li><li><a class=article-category-link href=http://codekoala.tech/categories/reactjs>reactjs</a></li></ul></li><li class=tags><ul><li><a class=article-category-link href=http://codekoala.tech/tags/reactjs>reactjs</a></li><li><a class=article-category-link href=http://codekoala.tech/tags/syntax>syntax</a></li></ul></li></ul></footer></article><div class=pagination><a href=/blog/introduction-to-react-hooks/ class=button><div class=previous><div>Introduction to React Hooks</div></div></a><a href=/blog/sql-snippet-foreign-keys/ class=button><div class=next><div>SQL Snippet: Foreign Keys</div></div></a></div></main><section id=site-sidebar><section id=mini-bio><header><h1>About</h1></header><h6>FULL STACK DEVELOPER.<br>SOFTWARE ENGINEER.<br>COMPUTER SCIENCE GRADUATE.</h6><footer><a href=/about class=button>Learn More</a></footer></section><section id=recent-posts><header><h1>Recent posts</h1></header><article class=mini-post><header><h1><a href=/blog/2020/git-understanding-under-the-hoot/>Understanding Git under the hood</a></h1><time class=published datetime>April 28, 2020</time></header></article><article class=mini-post><header><h1><a href=/blog/2020/linux-permissions-and-ownership/>Linux Snippet: File Permissions & Ownership</a></h1><time class=published datetime>March 30, 2020</time></header></article><article class=mini-post><header><h1><a href=/blog/2020/nodejs-snippet-child-process/>NodeJS Snippet: Child Process</a></h1><time class=published datetime>January 24, 2020</time></header></article><article class=mini-post><header><h1><a href=/blog/2020/nodejs-architecture-and-concurrency-model/>NodeJS Architecture & Concurrency Model</a></h1><time class=published datetime>January 15, 2020</time></header></article><article class=mini-post><header><h1><a href=/blog/sql-snippet-foreign-keys/>SQL Snippet: Foreign Keys</a></h1><time class=published datetime>September 24, 2019</time></header></article><a href=/blog/ class=button>See more</a></section><section id=categories><header><h1><a href=/categories>Categories</a></h1></header><ul class=categoryname><li><a href=/categories/os/>os<span class=count>4</span></a><li><a href=/categories/git/>git<span class=count>2</span></a><li><a href=/categories/javascript/>javascript<span class=count>2</span></a><li><a href=/categories/linux/>linux<span class=count>2</span></a><li><a href=/categories/reactjs/>reactjs<span class=count>2</span></a><li><a href=/categories/database/>database<span class=count>1</span></a><li><a href=/categories/software/>software<span class=count>1</span></a></li></ul></section></section><script src=/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/bundle.min.67aa53a8fb48f23a2dd330d70722d4cf54bc0ecb4764718e5485fc2eb0279993.js integrity="sha256-Z6pTqPtI8jot0zDXByLUz1S8DstHZHGOVIX8LrAnmZM="></script><script src=/js/add-on.js></script><html></html></div></body></html>
