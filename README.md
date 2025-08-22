@@ -1,7 +1,7 @@
 hugo --minify
 hugo --minify --destination=./docs
 
-git clone --recurse-submodules https://github.com/udarabibile/code-koala-blog.git
+git clone --recurse-submodules -b dev-blog https://github.com/udarabibile/code-koala-blog.git
 git submodule update --remote themes/hugo-future-imperfect-slim
 
 git config user.name "Udara Bibile"
