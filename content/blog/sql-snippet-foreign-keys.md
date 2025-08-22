@@ -1,6 +1,6 @@
 +++
 author = "Udara Bibile"
-authorImage = "/img/udarabibile.jpg"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "SQL Snippet: Foreign Keys"
 date = "2019-09-24"
 description = "MANAGING RELATIONSHIPS BETWEEN DATABASE ATTRIBUTES."

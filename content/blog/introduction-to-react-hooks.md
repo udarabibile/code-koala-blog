@@ -1,6 +1,6 @@
 +++
 author = "Udara Bibile"
-authorImage = "/img/udarabibile.jpg"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "Introduction to React Hooks"
 date = "2019-07-19"
 description = "Giving superpowers to functional components"

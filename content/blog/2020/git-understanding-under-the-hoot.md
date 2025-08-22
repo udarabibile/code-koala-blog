@@ -1,13 +1,13 @@
 +++
 author = "Udara Bibile"
 authors = ["s"]
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "Understanding Git under the hood"
 date = "2020-04-28"
 description = "How Git internals work to organize data and history"
 tags = ["git", "chmod"]
 categories = ["git", "os"]
-images  = ["img/2020/linux-permissions-cmd.jpeg"]
+images  = ["img/2020/git-object-model.png"]
 type = "post"
 aliases = ["migrate-from-jekyl"]
 draft = false
@@ -113,7 +113,7 @@ Any of these content can be used calculate hash value, and content will be store
 ### Git Objects for Commits, Files & Directories
 
 To clearly understand Git objects and its databases, lets create a file & commit into git repository.
-> #### The quarterly results look great!
+> The quarterly results look great!
 >
 > - Revenue was off the chart.
 > - Profits were higher than ever.
@@ -191,8 +191,6 @@ Git object for `a.txt` remains same as content remains same. But within the pa
 ```
 If blobs are checked it will have expected content. Note that here `aaa.txt` will have same object of `a.txt` cause the content of the files are same containing `aaa`. However file name change didn't effect this as it was not stored in **blob** itself but rather it was stored in its containing **tree**.
 
-![](https://miro.medium.com/max/60/1*GoHwCOgjOeZTQ3jw46a2sg.png?q=20)
-
 ![](https://miro.medium.com/max/1638/1*GoHwCOgjOeZTQ3jw46a2sg.png)
 
 Git Object Model
@@ -219,15 +217,11 @@ It can been seen how git reused common blob containing `aaa` between two commi
 
 This currently have two commits, and user can checkout to either of these commits. For either of the commits, its perspective of files and directories might differ. For a commit it will ignore connected commits, and build up files and directories using trees and blobs it is connected to Here it will show how its seen by two commits
 
-![](https://miro.medium.com/max/60/1*Np9aHqG6d7hS22MxiGMV4g.png?q=20)
-
 ![](https://miro.medium.com/max/4064/1*Np9aHqG6d7hS22MxiGMV4g.png)
 
 ##### Edit existing files
 
 Previous commit was able to show how newly added directories or files are represented. In this commit it will show how file edit is reflected in git object model: edit `a.txt` in root directory content to `aab`.
-
-![](https://miro.medium.com/max/60/1*zRM0Ve8P09fQ7mGatlZ9CA.png?q=20)
 
 ![](https://miro.medium.com/max/1638/1*zRM0Ve8P09fQ7mGatlZ9CA.png)
 
@@ -253,7 +247,6 @@ $ echo "ccc" >> c.txt          # add new file of c.txt
 $ git add .
 $ git commit -m "branch1"
 ```
-![](https://miro.medium.com/max/60/1*opLguYyfIUPgPOZnLCKnJA.png?q=20)
 
 ![](https://miro.medium.com/max/1728/1*opLguYyfIUPgPOZnLCKnJA.png)
 
@@ -266,7 +259,6 @@ $ nano a.txt                   # edit content of a.txt
 $ git add .
 $ git commit -m "master"
 ```
-![](https://miro.medium.com/max/60/1*RHTLeu2ObeSftgS4rlIHZQ.png?q=20)
 
 ![](https://miro.medium.com/max/1698/1*RHTLeu2ObeSftgS4rlIHZQ.png)
 
@@ -286,8 +278,6 @@ As seen git branches just refers commit id, hence lets alter git files to make a
 cat .git/refs/heads/master > .git/refs/heads/branch1
 ```
 This replaces `branch1` commit reference with `master` commit reference.
-
-![](https://miro.medium.com/max/60/1*E3xeuhC6cL03ZBHRvB851w.png?q=20)
 
 ![](https://miro.medium.com/max/1698/1*E3xeuhC6cL03ZBHRvB851w.png)
 

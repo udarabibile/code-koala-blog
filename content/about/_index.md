@@ -6,7 +6,7 @@ date = "2020-03-16"
 #### About Me
 ### Udara Chathuranga Bibile
 
-<img src="/img/udarabibile.jpg" style="width:30%;">
+<img src="/img/udarabibile-thumbnail.png" style="width:30%;">
 
 I'm Full Stack Developer and Software Enginner.
 
