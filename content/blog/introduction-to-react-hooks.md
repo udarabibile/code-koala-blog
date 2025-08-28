@@ -8,7 +8,7 @@ tags = ["reactjs", "syntax"]
 categories = ["javascript", "reactjs"]
 images  = ["img/2019/react-hooks.png"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 

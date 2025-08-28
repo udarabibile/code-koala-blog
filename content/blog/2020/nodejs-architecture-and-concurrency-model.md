@@ -9,7 +9,7 @@ tags = ["chown", "chmod"]
 categories = ["linux", "os"]
 images  = ["img/2020/nodejs-architecture.webp"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 

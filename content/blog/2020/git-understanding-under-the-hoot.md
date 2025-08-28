@@ -9,7 +9,7 @@ tags = ["git", "chmod"]
 categories = ["git", "os"]
 images  = ["img/2020/git-object-model.png"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 

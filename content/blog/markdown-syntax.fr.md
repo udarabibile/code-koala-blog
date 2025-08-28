@@ -7,7 +7,7 @@ tags = ["markdown", "css", "html", "themes"]
 categories = ["themes", "syntax"]
 images  = ["img/2014/04/pic02.jpg"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = true
 +++
 
