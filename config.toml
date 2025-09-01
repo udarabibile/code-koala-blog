@@ -1,4 +1,4 @@
-baseurl                 = "http://codekoala.net/"
+baseurl                 = "http://codekoala.dev/"
 DefaultContentLanguage  = "en"
 title                   = "Code Koala"
 theme                   = "hugo-future-imperfect-slim"

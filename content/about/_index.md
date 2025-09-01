@@ -8,19 +8,17 @@ date = "2020-03-16"
 
 <img src="/img/udarabibile-thumbnail.png" style="width:30%;">
 
-I'm Full Stack Developer and Software Enginner.
+I'm Senior Full Stack Software Engineer with 8 years of experience specialising in Reactjs and Nodejs.
 
 <hr/>
 #### My interests
 
-* [React.js](https://github.com/spf13/cobra)
-* [Nodejs](https://github.com/spf13/viper)
-* [.NET Core](https://github.com/spf13/jWalterWeatherman)
-
-Learn more and contribute on [GitHub](https://github.com/spf13).
+* [React.js](https://react.dev)
+* [Nodejs](https://nodejs.org)
+* [.NET](https://dotnet.microsoft.com)
 
 #### Contact Me:
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/spf13/hugo/issues/new) or [ask me on Twitter](https://twitter.com/spf13).
+My projects found in [GitHub - udarabibile](https://github.com/udarabibile) and [GitHub - chathuranga94](https://github.com/chathuranga94)
 
 Thanks for reading!
