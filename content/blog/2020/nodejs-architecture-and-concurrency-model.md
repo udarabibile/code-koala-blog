@@ -1,15 +1,15 @@
 +++
 author = "Udara Bibile"
 authors = ["s"]
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "NodeJS Architecture & Concurrency Model"
 date = "2020-01-15"
 description = "Single threaded JavaScript into asynchronous non-blocking I/O model using Event Loop"
 tags = ["chown", "chmod"]
 categories = ["linux", "os"]
-images  = ["img/2020/linux-permissions-cmd.jpeg"]
+images  = ["img/2020/nodejs-architecture.webp"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 
@@ -24,15 +24,11 @@ JavaScript language is popularly used for web pages and to make them interactiv
 
 JavaScript Engine is used to convert JavaScript code into machine code to be executed. JS Engine acts as an interpreter and consists of Memory Heap (Store objects of variables, functions), and Call Stack (To execute functions).
 
-![](https://miro.medium.com/max/60/1*HM7lI4yROtSKnguaLOmsmg.png?q=20)
-
 ![](https://miro.medium.com/max/1884/1*HM7lI4yROtSKnguaLOmsmg.png)
 
 JavaScript Engine
 
 Modern browsers creates JavaScript runtime making use of JavaScript Engine to convert web page javascript code to be executed. Different browsers make use different JS Engines to be used within their browser.
-
-![](https://miro.medium.com/max/60/1*G6Df7UN077zp0aCutcok4w.png?q=20)
 
 ![](https://miro.medium.com/max/2244/1*G6Df7UN077zp0aCutcok4w.png)
 
@@ -73,8 +69,6 @@ Simply node.js can be summed as follows by office docs:
 
 NodeJS Architecture and Notable Components
 ------------------------------------------
-
-![](https://miro.medium.com/max/60/1*5USTrYHazNhCrEDnUeozLw.png?q=20)
 
 ![](https://miro.medium.com/max/2648/1*5USTrYHazNhCrEDnUeozLw.png)
 
@@ -143,8 +137,6 @@ Example javascript program
 
 Here in execution order, when setting into function it will be pushed into call stack. If there are function within that function it'll be pushed into stack on top of what was already in call stack. When there are no function is to be pushed, it'll execute function on top of call stack. After execution, when returning from function it will be popped from call stack. So Call Stack: first in last out (FILO) is actually keeping track of functions which are executing.
 
-![](https://miro.medium.com/max/60/1*Pi3tJnRI_ZdYHcnFJE8frA.png?q=20)
-
 ![](https://miro.medium.com/max/4036/1*Pi3tJnRI_ZdYHcnFJE8frA.png)
 
 Call Stack upon execution
@@ -179,8 +171,6 @@ console.log(doc.size)
 
 In above example `file.pdf` is read then thread is paused there till it's done. Here `file.doc` could have also be read in parallel as its independent of first function call, but due to call stack it'll be executed after `file.pdf` is finished.
 
-![](https://miro.medium.com/max/60/1*gOZzwz3NXV9AK58xQ_1nDQ.png?q=20)
-
 ![](https://miro.medium.com/max/1644/1*gOZzwz3NXV9AK58xQ_1nDQ.png)
 
 Serial execution for synchronous I/O
@@ -203,8 +193,6 @@ const doc = fs.readFile(file.doc)\
 
 *Note even if javascript only expose one thread for execution & call stack, it should be noted that node.js have thread pool internally. So thereby no limitation for performing multiple I/O operations parallel.*
 
-![](https://miro.medium.com/max/60/1*eMEVR5TwgeW7rc0s5-xwmg.png?q=20)
-
 ![](https://miro.medium.com/max/1364/1*eMEVR5TwgeW7rc0s5-xwmg.png)
 
 Parallel execution with callbacks for Asynchronous I/O
@@ -219,8 +207,6 @@ From above it can be seen that node.js is using async callback programming mod
 > The event loop is what allows Node.js to perform non-blocking I/O operations --- despite the fact that JavaScript is single-threaded --- by offloading operations to the system kernel whenever possible.
 
 This diagram shows major components interact to provide asynchronous I/O:
-
-![](https://miro.medium.com/max/60/1*eE_fM5qLGM_pY-J-8u54Mw.png?q=20)
 
 ![](https://miro.medium.com/max/2884/1*eE_fM5qLGM_pY-J-8u54Mw.png)
 
@@ -245,8 +231,6 @@ Let's check following javascript code handle I/O operation asynchronously:
 
 console.log("BEFORE TIMEOUT FUNCTION");setTimeout(function timeout() {\
  console.log("TIMEOUT FUNCTION");\}, 5000);console.log("AFTER TIMEOUT FUNCTION");
-
-![](https://miro.medium.com/freeze/max/60/1*Ra0O_48FDyY2L57zamiFUA.gif?q=20)
 
 ![](https://miro.medium.com/max/2696/1*Ra0O_48FDyY2L57zamiFUA.gif)
 
@@ -294,8 +278,6 @@ Event Loop Phases
 -----------------
 
 Previously it was mentioned that Event Loop will be monitoring for empty Call Stack and pending Event Queue to execute callbacks in Call Stack. This procedure follows few stages as following diagram:
-
-![](https://miro.medium.com/max/56/0*DAcZxPG7XD6bcfMw?q=20)
 
 ![](https://miro.medium.com/max/982/0*DAcZxPG7XD6bcfMw)
 
@@ -361,7 +343,5 @@ When NodeJS is useful?
 NodeJS simply provides non-blocking asynchronous I/O model even with single thread. This makes nodejs more suitable for I/O intensive applications than other available options. (Note CPU intensive applications are not suited for nodejs being its single threaded, and will block execution.)
 
 As javascript programming language is used in nodejs, developers are able to make full stack applications all in one language.
-
-![](https://miro.medium.com/max/54/1*kQDy60fK6Un7HwGFMmMQPA.png?q=20)
 
 ![](https://miro.medium.com/max/592/1*kQDy60fK6Un7HwGFMmMQPA.png)

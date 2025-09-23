@@ -1,6 +1,6 @@
 +++
 author = "Udara Bibile"
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "SQL Snippet: Foreign Keys"
 date = "2019-09-24"
 description = "MANAGING RELATIONSHIPS BETWEEN DATABASE ATTRIBUTES."
@@ -8,7 +8,7 @@ tags = ["sql", "syntax"]
 categories = ["database", "software"]
 images  = ["img/2019/sql-foreign-keys.png"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 +++
 
 If you have worked with SQL based database, I guess y’all are familiar with **usage of foreign keys to manage relationship between tables.**
@@ -130,7 +130,7 @@ With just using flexibility of NoSQL and arrays many-to-many relationship is sim
 
 In order to create many-to-many relationship, a join table is created to record unique identifiers of connected values. As per example in order to join **Book** and **Author** tables, another table called **Author_Book** is created.
 
-<img class="image featured" src="/img/2019/many-to-many.png" alt="" />
+<img class="image featured" src="img/2019/many-to-many.png" alt="" />
 
 Lets create two simple tables without any relationship for **Book** and **Author**.
 

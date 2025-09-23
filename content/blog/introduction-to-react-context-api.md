@@ -1,6 +1,6 @@
 +++
 author = "Udara Bibile"
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "Introduction to React Context API"
 date = "2019-07-20"
 description = "Avoid props drilling to child components"
@@ -8,7 +8,7 @@ tags = ["reactjs", "syntax"]
 categories = ["javascript", "reactjs"]
 images  = ["img/2019/react-context-api.png"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 

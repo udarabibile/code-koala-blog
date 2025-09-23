@@ -1,7 +1,7 @@
 +++
 author = "Udara Bibile"
 authors = ["s"]
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "NodeJS Snippet: Child Process"
 date = "2020-01-24"
 description = "Offload tasks to a spawned process to unblock the main thread"
@@ -9,7 +9,7 @@ tags = ["git", "chmod"]
 categories = ["git", "os"]
 images  = ["img/2020/nodejs-child-process.png"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 

@@ -1,7 +1,7 @@
 +++
 author = "Udara Bibile"
 authors = ["s"]
-authorImage = "/img/udarabibile.png"
+authorImage = "/img/udarabibile-thumbnail.png"
 title = "Linux Snippet: File Permissions & Ownership"
 date = "2020-03-30"
 description = "Using chmod and chown to work with permissions and ownership"
@@ -9,7 +9,7 @@ tags = ["chown", "chmod"]
 categories = ["linux", "os"]
 images  = ["img/2020/linux-permissions-cmd.jpeg"]
 type = "post"
-aliases = ["migrate-from-jekyl"]
+aliases = []
 draft = false
 +++
 
@@ -26,11 +26,11 @@ drwxr-xr-x  12 bibi         staff     384 16 Mar 11:19 public
 
 Let’s break down what each segment of these entries stands for:
 
-<img class="image featured" src="/img/2020/linux-permissions-cmd.png" alt="" />
+<img class="image featured" src="img/2020/linux-permissions-cmd.png" alt="" />
 
 <!--
 <figure>
-  <img class="image featured" src="/img/2020/linux-permissions-cmd.jpeg" alt="" style="width:100%" >
+  <img class="image featured" src="img/2020/linux-permissions-cmd.jpeg" alt="" style="width:100%" >
   <figcaption style="text-align:center">Permissions for start.sh script.</figcaption>
 </figure>
 -->
@@ -59,7 +59,7 @@ Hence 9 characters can **define permission types for each of the users, and this
 
 
 <figure>
-  <img class="image featured" src="/img/2020/linux-permissions-table.jpeg" alt="" style="width:100%" >
+  <img class="image featured" src="img/2020/linux-permissions-table.jpeg" alt="" style="width:100%" >
   <figcaption style="text-align:center">Permissions for start.sh script.</figcaption>
 </figure>
 
@@ -105,7 +105,7 @@ chmod u=rwx,g=rx,o=r start.sh
 Each user permission is declared using 3-digit binary value which contains `1` if that permission is granted, else given `0`. Since 3-digits are used it can be interpreted by octal value from 0 to 7. Then 3 octal values used to interpret permissions for user, group, and others.
 
 <figure>
-  <img class="image featured" src="/img/2020/linux-permission-single-octal.jpeg" alt="" style="width:100%" >
+  <img class="image featured" src="img/2020/linux-permission-single-octal.jpeg" alt="" style="width:100%" >
   <figcaption style="text-align:center">Binary calculation for permission.</figcaption>
 </figure>
 
@@ -113,7 +113,7 @@ Here binary combination includes as follows. `read = 1`, `write = 0`, and `execu
 
 This should be repeated for all permissions for each user to end up with value final value. This seems 3-digit value can interpret all which permission types for which user types:
 
-<img class="image featured" src="/img/2020/linux-permissions-octal.jpeg" alt="" />
+<img class="image featured" src="img/2020/linux-permissions-octal.jpeg" alt="" />
 
 So let's break down command `chmod 764 command.sh`:
 
